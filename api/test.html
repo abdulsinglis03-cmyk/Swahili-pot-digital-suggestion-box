@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>API Test</h2>
+
+<button onclick="getSuggestions()">Get Suggestions</button>
+
+<pre id="result"></pre>
+
+<script>
+
+function getSuggestions() {
+
+fetch("https://swahilipot-box.free.nf/api/suggestions.php?api_key=SUPER2026KEY")
+
+.then(res => res.json())
+
+.then(data => {
+    document.getElementById("result").textContent =
+        JSON.stringify(data, null, 2);
+})
+
+.catch(error => {
+    document.getElementById("result").textContent = error;
+});
+
+}
+
+</script>
+
+</body>
+</html>
