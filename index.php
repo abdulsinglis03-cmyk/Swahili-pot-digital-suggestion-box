@@ -37,11 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formData['message']   = trim($_POST['message'] ?? '');
         $formData['branch_id'] = (int)($_POST['branch_id'] ?? 0);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Anonymous submission
-        |--------------------------------------------------------------------------
-        */
+        
 
         if ($formData['anonymous']) {
 
@@ -72,21 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         }
 
-        /*
-|--------------------------------------------------------------------------
-| Branch validation
-|--------------------------------------------------------------------------
-*/
+
 
 if ($formData['branch_id'] <= 0) {
     $errors[] = 'Please select a Swahilipot branch.';
 }
         
-        /*
-        |--------------------------------------------------------------------------
-        | Category validation
-        |--------------------------------------------------------------------------
-        */
+        
 
         if (!normalizeCategory($formData['category'])) {
 
@@ -94,11 +82,7 @@ if ($formData['branch_id'] <= 0) {
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Message validation
-        |--------------------------------------------------------------------------
-        */
+      
 
         if ($formData['message'] === '') {
 
@@ -114,17 +98,11 @@ if ($formData['branch_id'] <= 0) {
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Save feedback
-        |--------------------------------------------------------------------------
-        */
-
         if (empty($errors)) {
     try {
         $pdo = getDB();
 
-        // Generate a unique feedback reference code
+        
         $referenceCode = 'SP-' . date('Y') . '-' . strtoupper(bin2hex(random_bytes(3)));
 
 $stmt = $pdo->prepare(
