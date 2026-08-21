@@ -61,7 +61,7 @@ $stats = [
 $where = [];
 $params = [];
 
-// Branch restriction
+
 if ($_SESSION['admin_role'] !== 'super_admin') {
     $where[] = 'suggestions.branch_id = ?';
     $params[] = $_SESSION['branch_id'];
